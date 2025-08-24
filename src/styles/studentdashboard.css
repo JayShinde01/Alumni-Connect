@@ -1,0 +1,87 @@
+/* Overall container */
+.dashboard-container {
+  padding: 24px;
+  background: linear-gradient(135deg, #f0f2f5, #e6f7ff);
+  min-height: 100vh;
+  width: 100vw;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Page title */
+.dashboard-container h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1890ff;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* Overview Cards */
+.dashboard-cards .ant-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.dashboard-cards .ant-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.ant-statistic-title {
+  font-weight: 500;
+  color: #555;
+}
+
+.ant-statistic-content {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1890ff;
+}
+
+/* Upcoming Interviews Table */
+.upcoming-interviews-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.ant-table-thead > tr > th {
+  background-color: #e6f7ff;
+  font-weight: 600;
+  color: #1890ff;
+}
+
+.ant-table-tbody > tr:hover > td {
+  background-color: #fafafa;
+  transition: background-color 0.3s ease;
+}
+
+.ant-table-tbody .ant-btn-primary {
+  background-color: #1890ff;
+  border-color: #1890ff;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.ant-table-tbody .ant-btn-primary:hover {
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+}
+
+/* Button styles */
+.ant-btn {
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dashboard-cards .ant-col {
+    margin-bottom: 16px;
+  }
+
+  .dashboard-container h1 {
+    font-size: 28px;
+  }
+}

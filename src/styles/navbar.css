@@ -1,0 +1,49 @@
+/* Remove default Ant Design padding/margin */
+.ant-layout-header {
+  padding: 30 !important;
+  line-height: normal !important;
+}
+
+/* Navbar styling */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* space logo left, menu right */
+  background: #8ddf68;
+  padding: 0 30px;
+  height: 64px; /* standard navbar height */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* always on top */
+}
+
+.logo {
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  flex-shrink: 0; /* logo won’t shrink */
+}
+
+.menu-items {
+  display: flex !important;       /* keep menu in a row */
+  justify-content: flex-end;      /* align right */
+  flex-grow: 1;                   /* take available space */
+  background: transparent !important;
+  border-bottom: none;
+}
+
+.menu-items .ant-menu-item {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.menu-items .ant-menu-item a {
+  color: #fff !important;
+  text-decoration: none;
+}
+
+.menu-items .ant-menu-item:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 6px;
+}
