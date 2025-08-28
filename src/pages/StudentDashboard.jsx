@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Row, Col, Statistic, Table, Button } from "antd";
 import  "../styles/studentdashboard.css";
+import Navbar from "../component/Navbar";
 
 
 
@@ -25,8 +26,12 @@ const StudentDashboard = () => {
   ];
 
   return (
-    <div style={{ padding: 24 }}>
+    <>
+     <Navbar/>
+     <div style={{ padding: 24 }}>
+      
       <h1>Student Dashboard</h1>
+      
 
       {/* Overview cards */}
       <Row gutter={16} style={{ marginBottom: 24 }}>
@@ -52,6 +57,8 @@ const StudentDashboard = () => {
         <Table dataSource={upcomingInterviews} columns={columns} />
       </Card>
     </div>
+    </>
+    
   );
 };
 

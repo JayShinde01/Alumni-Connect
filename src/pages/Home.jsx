@@ -12,9 +12,10 @@ export default function Home() {
     
 
 
-    
+    <>
+    <Navbar/>
     <div className="home-container">
-      <Navbar/>
+      
        <p className="home-intro">
         Welcome to the Alumni Portal. Connect with former students, explore opportunities, 
         and stay updated with college events.
@@ -39,6 +40,8 @@ export default function Home() {
         </Col>
       </Row>
     </div>
+    </>
+    
     
   );
 }

@@ -1,49 +1,46 @@
-/* Remove default Ant Design padding/margin */
-.ant-layout-header {
-  padding: 30 !important;
-  line-height: normal !important;
-}
-
-/* Navbar styling */
+/* Navbar container */
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* space logo left, menu right */
-  background: #8ddf68;
-  padding: 0 30px;
-  height: 64px; /* standard navbar height */
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000; /* always on top */
+  justify-content: space-between;
+  background: #001529; /* AntD default blue */
+  padding: 0 20px;
 }
 
-.logo {
+/* Logo */
+.navbar .logo {
   color: #fff;
-  font-size: 22px;
-  font-weight: bold;
-  flex-shrink: 0; /* logo won’t shrink */
+  font-weight: 600;
+  font-size: 18px;
+  margin-right: 30px;
+  white-space: nowrap;
 }
 
-.menu-items {
-  display: flex !important;       /* keep menu in a row */
-  justify-content: flex-end;      /* align right */
-  flex-grow: 1;                   /* take available space */
+/* Menu section */
+.navbar .menu-items {
+  flex: 1;
   background: transparent !important;
+  display: flex;
+  justify-content: center;
+}
+
+/* Remove AntD bottom line */
+.navbar .ant-menu {
   border-bottom: none;
 }
 
-.menu-items .ant-menu-item {
-  font-size: 16px;
+/* Menu links */
+.navbar .ant-menu-item a {
+  color: #fff !important;
   font-weight: 500;
 }
 
-.menu-items .ant-menu-item a {
-  color: #fff !important;
-  text-decoration: none;
+/* Hover effect */
+.navbar .ant-menu-item:hover a {
+  color: #40a9ff !important;
 }
 
-.menu-items .ant-menu-item:hover {
-  background: rgba(255, 255, 255, 0.2) !important;
-  border-radius: 6px;
+/* Logout button */
+.logout-btn {
+  margin-left: auto;
 }

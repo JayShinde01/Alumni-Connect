@@ -2,12 +2,15 @@ import React from "react";
 import { Card, Row, Col, Typography } from "antd";
 import { AimOutlined, BulbOutlined, TeamOutlined, HeartOutlined } from "@ant-design/icons";
 import "../styles/about.css";
+import Navbar from "../component/Navbar";
 
 const { Title, Paragraph } = Typography;
 
 const About = () => {
   return (
-    <div className="about-container">
+    <>
+    <Navbar/>
+     <div className="about-container">
       {/* Hero Section */}
       <div className="hero-section">
         <Title level={1} className="hero-title">About Our Alumni Platform</Title>
@@ -62,6 +65,8 @@ const About = () => {
         </Col>
       </Row>
     </div>
+    </>
+   
   );
 };
 

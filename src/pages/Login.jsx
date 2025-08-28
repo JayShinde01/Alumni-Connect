@@ -1,34 +1,37 @@
-import React, { useState } from "react";
-import { Form, Input, Button, Card, Typography, Select, Alert } from "antd";
-import { MailOutlined, LockOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
-import "../styles/login.css";
-import { logIn } from "../service/Authentication";
+  import React, { useState } from "react";
+  import { Form, Input, Button, Card, Typography, Select, Alert } from "antd";
+  import { MailOutlined, LockOutlined } from "@ant-design/icons";
+  import { useNavigate } from "react-router-dom";
+  import "../styles/login.css";
+  import { logIn } from "../service/Authentication";
+  import Navbar from "../component/Navbar";
 
-const { Title } = Typography;
-const { Option } = Select;
+  const { Title } = Typography;
+  const { Option } = Select;
 
-const Login = () => {
+  const Login = () => {
 
-  const [form] = Form.useForm();
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
+    const [form] = Form.useForm();
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(false);
 
-  const navigate = useNavigate();
-
+    const navigate = useNavigate();
   const onFinish = async (values) => {
     try {
-      // const response = await logIn(values);
-      console.log("Login Success:");
+      const response = await logIn(values);
+      console.log("Login Success:", response);
       setSuccess(true);
       setError(false);
-      // form.resetFields();
+      form.resetFields();
+
+
 
       // Redirect based on role
-      if (values.role === "ADMIN") navigate("/admin-dashboard");
-      else if (values.role === "STUDENT") navigate("/student-dashboard");
-      else if (values.role === "ALUMNI") navigate("/alumni-dashboard");
-    
+      if (response !== "Invalid Credentials") {
+        if (response.role === "ADMIN") navigate("/admin-dashboard");
+        else if (response.role === "STUDENT") navigate("/student-dashboard");
+        else if (response.role === "ALUMNI") navigate("/alumni-dashboard");
+      }
 
       setTimeout(() => setSuccess(false), 2000);
     } catch (err) {
@@ -39,81 +42,87 @@ const Login = () => {
     }
   };
 
-  return (
-    <div className="login-container">
-      {success && (
-        <Alert
-          message="🎉 Login Successful!"
-          type="success"
-          showIcon
-          closable
-          style={{ marginBottom: 16 }}
-          onClose={() => setSuccess(false)}
-        />
-      )}
-      {error && (
-        <Alert
-          message="⚠️ Login Failed! Check your credentials."
-          type="error"
-          showIcon
-          closable
-          style={{ marginBottom: 16 }}
-          onClose={() => setError(false)}
-        />
-      )}
 
-      <Card className="login-card">
-        <Title level={2} className="login-title">Role Based Login</Title>
-        <Form
-          form={form}
-          name="login"
-          layout="vertical"
-          onFinish={onFinish}
-          autoComplete="off"
-        >
-          <Form.Item
-            name="email"
-            label="Email"
-            rules={[
-              { required: true, message: "Please enter your email!" },
-              { type: "email", message: "Enter a valid email!" },
-            ]}
+    return (
+      <>
+      <Navbar/>
+      <div className="login-container">
+        
+        {success && (
+          <Alert
+            message="🎉 Login Successful!"
+            type="success"
+            showIcon
+            closable
+            style={{ marginBottom: 16 }}
+            onClose={() => setSuccess(false)}
+          />
+        )}
+        {error && (
+          <Alert
+            message="⚠️ Login Failed! Check your credentials."
+            type="error"
+            showIcon
+            closable
+            style={{ marginBottom: 16 }}
+            onClose={() => setError(false)}
+          />
+        )}
+
+        <Card className="login-card">
+          <Title level={2} className="login-title">Role Based Login</Title>
+          <Form
+            form={form}
+            name="login"
+            layout="vertical"
+            onFinish={onFinish}
+            autoComplete="off"
           >
-            <Input prefix={<MailOutlined />} placeholder="Enter your email" />
-          </Form.Item>
+            <Form.Item
+              name="email"
+              label="Email"
+              rules={[
+                { required: true, message: "Please enter your email!" },
+                { type: "email", message: "Enter a valid email!" },
+              ]}
+            >
+              <Input prefix={<MailOutlined />} placeholder="Enter your email" />
+            </Form.Item>
 
-          <Form.Item
-            name="role"
-            label="Role"
-            rules={[{ required: true, message: "Please select your role!" }]}
-          >
-            <Select placeholder="Select role">
-              <Option value="STUDENT">STUDENT</Option>
-              <Option value="ALUMNI">ALUMNI</Option>
-              <Option value="ADMIN">ADMIN</Option>
-            </Select>
-          </Form.Item>
+            <Form.Item
+              name="role"
+              label="Role"
+              rules={[{ required: true, message: "Please select your role!" }]}
+            >
+              <Select placeholder="Select role">
+                <Option value="STUDENT">STUDENT</Option>
+                <Option value="ALUMNI">ALUMNI</Option>
+                <Option value="ADMIN">ADMIN</Option>
+              </Select>
+            </Form.Item>
 
-          <Form.Item
-            name="password"
-            label="Password"
-            rules={[{ required: true, message: "Please enter your password!" }]}
-          >
-            <Input.Password
-              prefix={<LockOutlined />}
-              placeholder="Enter your password"
-            />
-          </Form.Item>
+            <Form.Item
+              name="password"
+              label="Password"
+              rules={[{ required: true, message: "Please enter your password!" }]}
+            >
+              <Input.Password
+                prefix={<LockOutlined />}
+                placeholder="Enter your password"
+              />
+            </Form.Item>
 
-          <Form.Item>
-            <Button type="primary" htmlType="submit" block>
-              Login
-            </Button>
-          </Form.Item>
-        </Form>
-      </Card>
-    </div>
-  );
-};
+            <Form.Item>
+              <Button type="primary" htmlType="submit" block>
+                Login
+              </Button>
+            </Form.Item>
+          </Form>
+        </Card>
+      </div>
+      </>
+      
+    );
+  };
 
-export default Login;
+  export default Login;

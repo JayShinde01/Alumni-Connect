@@ -1,0 +1,42 @@
+.alumni-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+  background: #f9fbfd;
+  border-radius: 10px;
+}
+
+.search-bar {
+  margin: 20px 0;
+  width: 100%;
+  max-width: 600px;
+}
+
+.filters {
+  margin-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.alumni-list {
+  margin-top: 20px;
+}
+
+.alumni-card {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.alumni-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  transform: translateY(-5px);
+}
+
+.pagination {
+  margin-top: 30px;
+  text-align: center;
+}

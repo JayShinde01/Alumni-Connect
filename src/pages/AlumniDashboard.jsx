@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Row, Col, Statistic, Table, Button } from "antd";
+import Navbar from "../component/Navbar";
 // import "../styles/alumnidashboard.css";
 
 const AlumniDashboard = () => {
@@ -23,6 +24,7 @@ const AlumniDashboard = () => {
 
   return (
     <div className="alumni-dashboard-container">
+       <Navbar/>
       <h1>Alumni Dashboard</h1>
 
       {/* Overview cards */}

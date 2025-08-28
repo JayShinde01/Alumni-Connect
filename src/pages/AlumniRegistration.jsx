@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import { Form, Input, Button, Upload, Card, Row, Col, Alert } from "antd";
+import { Form, Input, Button, Upload, Card, Row, Col, Alert, Select } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import "../styles/alumniRegistration.css";
-import {registerAlumni} from "../service/Authentication"
+import {registerUser} from "../service/Authentication"
 const AlumniRegistration = () => {
   const [form] = Form.useForm();
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
-  const[reset,setReset] = useState(true);
 
-  const onFinish = (values) => {
+
+  const onFinish = async (values) => {
     console.log("Form Submitted:", values);
     setSuccess(true);
     setError(false); // clear error if success
-     registerAlumni(values);
+    await registerUser(values);
       form.resetFields();
     setTimeout(() => setSuccess(false), 5000);
   };
@@ -66,7 +66,7 @@ const AlumniRegistration = () => {
               <Col span={12}>
                 <Form.Item
                   label="Full Name"
-                  name="fullName"
+                  name="name"
                   rules={[{ required: true, message: "Please enter your full name!" }]}
                 >
                   <Input placeholder="Enter your full name" />
@@ -99,7 +99,7 @@ const AlumniRegistration = () => {
               <Col span={12}>
                 <Form.Item
                   label="Phone Number"
-                  name="phone"
+                  name="mobile"
                   rules={[
                     { required: true, message: "Please enter your phone number!" },
                     { pattern: /^[0-9]{10}$/, message: "Enter a valid 10-digit number!" },
@@ -115,7 +115,7 @@ const AlumniRegistration = () => {
                 <Form.Item
                   label="Current Company"
                   name="company"
-                  rules={[{ required: true, message: "Please enter your company name!" }]}
+                  rules={[{ required: false, message: "Please enter your company name!" }]}
                 >
                   <Input placeholder="Enter company name" />
                 </Form.Item>
@@ -124,7 +124,7 @@ const AlumniRegistration = () => {
                 <Form.Item
                   label="Job Title"
                   name="jobTitle"
-                  rules={[{ required: true, message: "Please enter your job title!" }]}
+                  rules={[{ required: false, message: "Please enter your job title!" }]}
                 >
                   <Input placeholder="Enter job title" />
                 </Form.Item>
@@ -134,11 +134,11 @@ const AlumniRegistration = () => {
             <Form.Item
               label="Skills"
               name="skills"
-              rules={[{ required: true, message: "Please enter your skills!" }]}
+              rules={[{ required: false, message: "Please enter your skills!" }]}
             >
               <Input.TextArea placeholder="Enter skills (comma separated)" rows={3} />
             </Form.Item>
-
+                
             <Form.Item
               label="Profile Photo"
               name="profilePhoto"
@@ -150,6 +150,25 @@ const AlumniRegistration = () => {
                 <Button icon={<UploadOutlined />}>Upload Profile Photo</Button>
               </Upload>
             </Form.Item>
+              <Form.Item
+              label="Password"
+              name="password"
+              rules={[{ required: true, message: "Please create paswword!" }]}
+            >
+              <Input placeholder="Enter password more than 6 " rows={3} />
+            </Form.Item>
+             <Form.Item
+  label="Role"
+  name="role"
+  rules={[{ required: true, message: "Please select a role!" }]}
+>
+  <Select placeholder="Select Role">
+    <Select.Option value="STUDENT">Student</Select.Option>
+    <Select.Option value="ALUMNI">Alumni</Select.Option>
+    <Select.Option value="ADMIN">Admin</Select.Option>
+  </Select>
+</Form.Item>
+
 
             <Form.Item>
               <Button type="primary" htmlType="submit" block className="submit-btn">
